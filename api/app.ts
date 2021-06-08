@@ -37,3 +37,12 @@ app.listen(process.env.PORT, () => {
     `Server running mode:${process.env.NODE_ENV} on port:${process.env.PORT}`
   );
 });
+
+process.on("SIGHUP", () => {
+  console.log("Received SIGINT. Bye!");
+  process.exit(0);
+});
+process.on("SIGINT", () => {
+  console.log("Received SIGINT. Bye!");
+  process.exit(0);
+});
