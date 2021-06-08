@@ -1,0 +1,10 @@
+{
+  "name": "vuln-app",
+  "version": "1.0.0",
+  "description": "An app vulnerable to JSON deserialisation attack",
+  "main": "./build/app.js",
+  "repository": "www.github.com/gitaalekhyapaul/vuln-app",
+  "author": "Gita Alekhya Paul <54375111+gitaalekhyapaul@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false
+}
