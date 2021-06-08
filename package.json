@@ -23,7 +23,7 @@
   },
   "scripts": {
     "dev": "tsc-watch --onSuccess \"yarn start\"",
-    "copy": "cp -r api/views build/views",
+    "copy": "rm -rf build/views && cp -r api/views build/views",
     "server": "node ./build/app.js",
     "start": "yarn copy && yarn server"
   }
