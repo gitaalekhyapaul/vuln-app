@@ -4,9 +4,65 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Title Page</title>
+    <title>Vuln App</title>
+    <style>
+      .container {
+        text-align: center;
+      }
+      form {
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin-bottom: 1%;
+      }
+      input {
+        text-align: center;
+        margin: 0.5%;
+        font-size: large;
+      }
+      button {
+        font-size: large;
+        margin: 0.5%;
+      }
+    </style>
   </head>
   <body>
-    Title Application.
+    <div class="container">
+      <h1>Super Secure Application</h1>
+      <form>
+        <label for="word"
+          >Enter some mixed-case word to get all in uppercase!</label
+        >
+        <input name="word" placeholder="Some word" />
+        <button type="submit">Submit!</button>
+      </form>
+      <div class="result" hidden>
+        <h3><==Result ==></h3>
+        <p class="res">Placeholder Result</p>
+      </div>
+    </div>
+    <script>
+      const submitForm = document.querySelector("form");
+      const submitFunc = async (event) => {
+        event.preventDefault();
+        const body = {
+          word: event.target.word.value,
+        };
+        try {
+          const response = await fetch("/api/v1/uppercase", {
+            method: "POST",
+            body: JSON.stringify(body),
+          });
+          const res = await response.json();
+          if (!res.success) {
+            alert(res.error ? res.error : "Some API Error!");
+          }
+        } catch (err) {
+          alert("Some Network Problem Occurred!");
+        }
+      };
+      submitForm.onsubmit = submitFunc;
+    </script>
   </body>
 </html>
