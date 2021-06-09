@@ -44,21 +44,31 @@
     </div>
     <script>
       const submitForm = document.querySelector("form");
+      const resultDiv = document.querySelector(".result");
+      const resultVal = document.querySelector(".res");
       const submitFunc = async (event) => {
         event.preventDefault();
         const body = {
           word: event.target.word.value,
         };
         try {
+          resultDiv.hidden = true;
           const response = await fetch("/api/v1/uppercase", {
             method: "POST",
             body: JSON.stringify(body),
+            headers: {
+              "Content-Type": "application/json",
+            },
           });
           const res = await response.json();
           if (!res.success) {
             alert(res.error ? res.error : "Some API Error!");
+          } else {
+            resultDiv.hidden = false;
+            resultVal.innerHTML = res.result;
           }
         } catch (err) {
+          console.dir(err);
           alert("Some Network Problem Occurred!");
         }
       };
