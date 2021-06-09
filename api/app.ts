@@ -1,16 +1,27 @@
 import express, { Request, Response, NextFunction, Express } from "express";
 import { config as dotenvConfig } from "dotenv";
 import { join } from "path";
+import { unserialize } from "node-serialize";
 
 dotenvConfig();
 
 const app: Express = express();
 app.set("view engine", "ejs");
 app.set("views", join(__dirname, "views"));
+app.use(express.json());
 
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.render("index");
+  res.render("index", { result: null });
 });
+
+app.post(
+  "/api/v1/uppercase",
+  (req: Request, res: Response, next: NextFunction) => {
+    const parsed = unserialize(req.body);
+    const uppercase = parsed.word.toUpperCase();
+    res.status(200).json({ success: true, result: uppercase });
+  }
+);
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
   res.status(404).json({
@@ -19,6 +30,7 @@ app.use("*", (req: Request, res: Response, next: NextFunction) => {
   });
 });
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.dir(err);
   if (err) {
     res.status(500).json({
       success: false,
