@@ -29,6 +29,6 @@
     "copy": "rm -rf build/views && cp -r api/views build/views",
     "server": "node ./build/app.js",
     "start": "yarn copy && yarn server",
-    "prepare": "husky install"
+    "prepare": "husky install && chmod +x -R .husky"
   }
 }
