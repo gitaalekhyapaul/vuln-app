@@ -49,7 +49,7 @@
       const submitFunc = async (event) => {
         event.preventDefault();
         const body = {
-          word: event.target.word.value,
+          payload: btoa(JSON.stringify({ word: event.target.word.value })),
         };
         try {
           resultDiv.hidden = true;

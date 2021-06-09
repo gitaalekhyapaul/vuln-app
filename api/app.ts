@@ -17,7 +17,10 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
 app.post(
   "/api/v1/uppercase",
   (req: Request, res: Response, next: NextFunction) => {
-    const parsed = unserialize(req.body);
+    const payload = Buffer.from(req.body.payload, "base64").toString();
+    console.log(payload);
+    const parsed = unserialize(payload);
+    console.log(parsed);
     const uppercase = parsed.word.toUpperCase();
     res.status(200).json({ success: true, result: uppercase });
   }
