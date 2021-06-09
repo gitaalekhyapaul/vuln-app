@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "vuln-app",
-      script: "yarn start",
+      script: "yarn build && yarn start",
     },
   ],
 };
