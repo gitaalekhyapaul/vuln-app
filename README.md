@@ -117,3 +117,4 @@ The server executes the request normally, but the reverse shell has already open
 - https://github.com/ajinabraham/Node.Js-Security-Course
 - https://0xdf.gitlab.io/2018/08/25/htb-celestial.html
 - https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/
+- https://portswigger.net/web-security/deserialization
